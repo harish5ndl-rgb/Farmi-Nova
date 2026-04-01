@@ -235,8 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 details: form.details.value
             };
 
-            const backendHost = window.location.hostname || 'localhost';
-            const nodeUrl = `http://${backendHost}:5000/send-supplier-form`;
+            // Use Render backend URL in production, localhost in development
+            let nodeUrl;
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                nodeUrl = 'http://localhost:5000/send-supplier-form';
+            } else {
+                nodeUrl = 'https://YOUR-RENDER-BACKEND-URL.onrender.com/send-supplier-form'; // TODO: Replace with your actual Render URL after deployment
+            }
 
             async function submitToNode() {
                 const response = await fetch(nodeUrl, {
