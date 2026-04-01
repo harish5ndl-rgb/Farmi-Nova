@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Harvest Global Trade | Global Exporter</title>
+<meta name="description" content="Contact Royal Harvest — premium agricultural exporters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header glass-header">
+    <div class="container header-flex">
+
+        <!-- Logo + Company Name -->
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpeg" alt="Royal Harvest Logo">
+            <div class="brand-text">
+                <span class="company-name">Royal Harvest</span>
+                <span class="company-sub">Global Trade</span>
+            </div>
+        </a>
+
+        <!-- Navigation -->
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" onclick="toggleMenu()" style="background:none;border:none;color:#fff;font-size:26px;display:none">☰</button>
+        <nav role="navigation">
+            <ul id="primary-navigation" class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="become-supplier.html">Become Supplier</a></li>
+                <li><a class="active" href="contact-us.html">Contact</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+<!-- ================= CONTACT HERO SECTION ================= -->
+<main id="main">
+<section class="contact-hero">
+    <div class="overlay"></div>
+
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1 class="reveal" data-reveal-delay="0">Contact Us</h1>
+        </div>
+
+        <div class="contact-cards">
+            
+            <div class="contact-card reveal" data-reveal-delay="80">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>royalharvest@gmail.com</p>
+            </div>
+
+            <div class="contact-card reveal" data-reveal-delay="160">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Call Us</h3>
+                <p>+91 98765 43210</p>
+            </div>
+
+            
+            <div class="contact-card reveal" data-reveal-delay="240">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Andhra Pradesh, India</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+</main>
+
+<footer id="contact" class="premium-footer">
+
+    <div class="footer-container">
+        <div class="footer-grid">
+
+            <!-- Logo + Tagline Column -->
+            <div class="footer-column brand-column">
+                <img src="images/logo.jpeg" class="footer-logo" alt="Royal Harvest Logo">
+                <p class="footer-tagline">
+                    Your trusted export partner. From the hands that cultivate the land
+                    to markets across the world, we proudly represent the strength and
+                    spirit of Indian farming. Every harvest we deliver reflects our
+                    commitment to quality, integrity, and trusted global partnerships.
+                </p>
+            </div>
+
+            <!-- Information Column -->
+            <div class="footer-column">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html#rice-varieties">Products</a></li>
+                    <li><a href="become-supplier.html">Become Supplier</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Products Column -->
+            <div class="footer-column">
+                <h3>Products Range</h3>
+                <ul class="footer-links">
+                    <li><a href="products.html#rice-varieties">Rice</a></li>
+                    <li><a href="products.html#grains">Grains</a></li>
+                    <li><a href="products.html#mangos">Mangos</a></li>
+                    <li><a href="products.html#vegetables">Vegetables</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-column contact-column">
+                <h3>Stay Connected</h3>
+                <div class="contact-info">
+                    <p>📍 Nandyal, Andhra Pradesh – 518501, India</p>
+                    <p>✉ info@royalharvest.com</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Royal Harvest Global Trade. All Rights Reserved.
+    </div>
+
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+
+<script>
+window.addEventListener("scroll", function () {
+    const header = document.querySelector(".main-header");
+    header.classList.toggle("scrolled", window.scrollY > 60);
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+
+    // Auto-stagger grouped reveals (siblings)
+    const groups = new Map();
+    reveals.forEach(el => {
+        const parent = el.parentElement || document;
+        if (!groups.has(parent)) groups.set(parent, []);
+        groups.get(parent).push(el);
+    });
+    groups.forEach(children => {
+        if (children.length > 1) children.forEach((el, i) => {
+            if (!el.dataset.revealDelay) el.dataset.revealDelay = String(i * 100 + 50);
+        });
+    });
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const delay = el.dataset.revealDelay || 0;
+                    el.style.transitionDelay = `${delay}ms`;
+                    el.classList.add('active');
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => obs.observe(r));
+    } else {
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    }
+});
+</script>
+
+<script>
+function toggleMenu(){
+    document.querySelector(".nav-list").classList.toggle("active");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Harvest Global Trade | Global Exporter</title>
+<meta name="description" content="Become a supplier — partner with Royal Harvest to access global markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header glass-header scrolled">
+    <div class="container header-flex">
+
+        <!-- Logo + Company Name -->
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpeg" alt="Royal Harvest Logo">
+            <div class="brand-text">
+                <span class="company-name">Royal Harvest</span>
+                <span class="company-sub">Global Trade</span>
+            </div>
+        </a>
+
+        <!-- Navigation -->
+        <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" onclick="toggleMenu()" style="background:none;border:none;color:#fff;font-size:26px;display:none">☰</button>
+        <nav role="navigation">
+            <ul id="primary-navigation" class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a class="active" href="become-supplier.html">Become Supplier</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- ================= BECOME SUPPLIER ================= -->
+<main id="main">
+<section id="become-supplier" class="become-supplier-section reveal">
+
+    <div class="container supplier-grid">
+
+        <!-- LEFT CONTENT -->
+        <div class="supplier-content reveal" data-reveal-delay="80">
+
+            <h2>Grow With Royal Harvest</h2>
+
+            <p>
+                We collaborate directly with farmers and agricultural producers
+                to deliver premium-quality exports worldwide. Partner with us
+                and access international markets with transparency and fair pricing.
+            </p>
+
+            <ul class="supplier-benefits">
+                <li>✔ Direct Export Opportunities</li>
+                <li>✔ Transparent Pricing Structure</li>
+                <li>✔ Quality Support & Training</li>
+                <li>✔ Long-term Partnership</li>
+            </ul>
+
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="supplier-form-wrapper reveal" data-reveal-delay="160">
+
+            <form id="supplierForm" class="supplier-form">
+                <input type="text" name="full_name" placeholder="Full Name" required>
+                <input type="text" name="company_name" placeholder="Farm / Company Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="text" name="products" placeholder="Products You Supply" required>
+                <textarea name="details" rows="4" placeholder="Additional Details"></textarea>
+                <button type="submit" class="btn-submit">
+                    Submit Application
+                </button>
+            </form>
+
+            <!-- thank you message (hidden until submit) -->
+            <div id="thankYouMessage" class="thank-you hidden">
+                <h3>Thank you for choosing Royal Harvest!</h3>
+                <p>Your application has been received. We will review the information and get back to you shortly.</p>
+                <p>We can contact you via:</p>
+                <ul>
+                    <li>Email – we'll send details to the address you provided.</li>
+                    <li>Phone – expect a call if you've given a number.</li>
+                    <li>You can also download our supplier brochure <a href="#" id="downloadBrochure">here</a>.</li>
+                </ul>
+                <p>If you need immediate assistance, feel free to <a href="contact-us.html">contact us</a>.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+</main>
+<!-- ================= FOOTER ================= -->
+<footer id="contact" class="premium-footer">
+
+    <div class="footer-container">
+        <div class="footer-grid">
+
+        <!-- Logo + Tagline Column -->
+        <div class="footer-column brand-column">
+            <img src="images/logo.jpeg" alt="Royal Harvest Logo" class="footer-logo">
+            
+            <p class="footer-tagline">
+                Your trusted export patner. From the hands that cultivate the land to markets across the world, we proudly represent the strength and spirit of Indian farming. Every harvest we deliver reflects our commitment to quality, integrity, and trusted global partnerships.
+            </p>
+        </div>
+
+        <!-- Information Column -->
+        <div class="footer-column">
+            <h3>Information</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html#rice-varieties">Products</a></li>
+                <li><a href="become-supplier.html">Become Supplier</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Products Column -->
+        <div class="footer-column">
+            <h3>Products Range</h3>
+            <ul class="footer-links">
+                <li><a href="products.html#rice-varieties">Rice</a></li>
+                <li><a href="products.html#grains">Grains</a></li>
+                <li><a href="products.html#mangos">Mangos</a></li>
+                <li><a href="products.html#vegetables">Vegetables</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-column contact-column">
+            <h3>Stay Connected</h3>
+            <div class="contact-info">
+                <p>📍 Nandyal, Andhra Pradesh – 518501, India</p>
+                <p>✉ info@royalharvest.com</p>
+            </div>
+                </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Royal Harvest Global Trade. All Rights Reserved.
+    </div>
+
+<!-- ================= SCRIPTS ================= -->
+
+<script>
+// Keep the header in the dark green 'scrolled' style at all times
+const header = document.querySelector(".main-header");
+if (header) {
+    header.classList.add("scrolled");
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+
+    // Auto-stagger grouped reveals (siblings)
+    const groups = new Map();
+    reveals.forEach(el => {
+        const parent = el.parentElement || document;
+        if (!groups.has(parent)) groups.set(parent, []);
+        groups.get(parent).push(el);
+    });
+    groups.forEach(children => {
+        if (children.length > 1) children.forEach((el, i) => {
+            if (!el.dataset.revealDelay) el.dataset.revealDelay = String(i * 100 + 50);
+        });
+    });
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const delay = el.dataset.revealDelay || 0;
+                    el.style.transitionDelay = `${delay}ms`;
+                    el.classList.add('active');
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => obs.observe(r));
+    } else {
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    }
+});
+</script>
+
+<script>
+function toggleMenu(){
+    document.querySelector(".nav-list").classList.toggle("active");
+}
+</script>
+
+<script>
+// handle form submission and send to backend
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('supplierForm');
+    const thankYou = document.getElementById('thankYouMessage');
+
+    if (form && thankYou) {
+        form.addEventListener('submit', async event => {
+            event.preventDefault(); // prevent default page reload
+            
+            // Collect form data
+            const formData = {
+                full_name: form.full_name.value,
+                company_name: form.company_name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                products: form.products.value,
+                details: form.details.value
+            };
+
+            const backendHost = window.location.hostname || 'localhost';
+            const nodeUrl = `http://${backendHost}:5000/send-supplier-form`;
+
+            async function submitToNode() {
+                const response = await fetch(nodeUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+
+                if (!response.ok) {
+                    const result = await response.json().catch(() => ({}));
+                    throw new Error(`Node backend error ${response.status}: ${result.message || response.statusText}`);
+                }
+
+                return true;
+            }
+
+            try {
+                await submitToNode();
+                form.classList.add('hidden');
+                thankYou.classList.remove('hidden');
+                return;
+            } catch (nodeError) {
+                console.error('Node backend failed:', nodeError);
+                alert(`Submission failed. Please ensure the Node backend is running on http://${backendHost}:5000 and try again.\n\nError: ${nodeError.message}`);
+                return;
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
