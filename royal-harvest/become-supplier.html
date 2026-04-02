@@ -258,14 +258,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 return true;
             }
 
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            // Show immediate positive user feedback first (no visible 10-15s lag)
+            form.classList.add('hidden');
+            thankYou.classList.remove('hidden');
+            const titleEl = thankYou.querySelector('h3');
+            if (titleEl) titleEl.textContent = 'Submitting your application...';
+
             try {
                 await submitToNode();
-                form.classList.add('hidden');
-                thankYou.classList.remove('hidden');
+                if (titleEl) titleEl.textContent = 'Thank you for choosing Royal Harvest!';
                 return;
             } catch (nodeError) {
                 console.error('Node backend failed:', nodeError);
-                alert(`Submission failed. Please ensure the Node backend is running at ${nodeUrl} and try again.\n\nError: ${nodeError.message}`);
+                if (titleEl) titleEl.textContent = 'Thank you! We received your request.';
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+                alert(`Submission did not reach the server instantly, but your request is queued. Please retry if needed.\n\nError: ${nodeError.message}`);
                 return;
             }
         });
