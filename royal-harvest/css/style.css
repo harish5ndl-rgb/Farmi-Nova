@@ -365,6 +365,148 @@ body, p, li {
     text-align:center;
 }
 
+/* ================= PRODUCT PAGE SECTIONS ================= */
+.rice-section {
+    padding: 90px 0;
+    background: linear-gradient(180deg, #f7faf3 0%, #eef6ed 100%);
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: #14532d;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    max-width: 840px;
+    margin: 0 auto 42px;
+    color: #46634d;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.rice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.rice-card {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rice-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
+}
+
+.rice-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.rice-card h3 {
+    margin: 20px 20px 12px;
+    color: #14532d;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.rice-card p {
+    margin: 0 20px 20px;
+    color: #4a5b48;
+    line-height: 1.75;
+    font-size: 0.97rem;
+}
+
+.rice-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px 24px;
+}
+
+.rice-card ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: #2f3f32;
+    font-size: 0.96rem;
+}
+
+.rice-card ul li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #15803d;
+    font-size: 0.9rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 50px;
+}
+
+.rice-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.rice-table th,
+.rice-table td {
+    padding: 18px 20px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.rice-table thead th {
+    background: #14532d;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.rice-table tbody tr:nth-child(even) {
+    background: #f4faf6;
+}
+
+.rice-table tbody td {
+    border-top: 1px solid #e6ede5;
+    color: #304231;
+}
+
+@media (max-width: 992px) {
+    .rice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .rice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rice-card img {
+        height: 220px;
+    }
+
+    .rice-table {
+        min-width: 100%;
+    }
+}
+
 /* ================= PRODUCT CAROUSEL ================= */
 .carousel-item{
 text-decoration: none !important;
@@ -1581,6 +1723,57 @@ body {
 
 
 
+
+@media (max-width: 768px) {
+    .contact-hero {
+        padding-top: 80px;
+        padding-bottom: 40px;
+        min-height: auto;
+        background-position: center top;
+    }
+
+    .contact-hero .hero-content {
+        padding: 30px 18px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+        line-height: 1.15;
+    }
+
+    .contact-cards {
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 28px;
+    }
+
+    .contact-card {
+        min-width: 100%;
+        padding: 24px;
+    }
+
+    .contact-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .contact-card.call-card .contact-card-header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .contact-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+}
+
 /* ================= BECOME SUPPLIER ================= */
 .become-supplier {
     position: relative;
@@ -1590,426 +1783,5 @@ body {
 }
 
 .supplier-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 50, 25, 0.8);
-    top: 0;
-    left: 0;
-}
-
-.supplier-content {
-    position: relative;
-    width: 90%;
-    margin: auto;
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-/* LEFT SIDE */
-.supplier-left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.supplier-left h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
-}
-
-.supplier-left p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    color: #d9f7e2;
-}
-
-.supplier-benefits {
-    list-style: none;
-    padding: 0;
-}
-
-.supplier-benefits li {
-    margin-bottom: 12px;
-    font-size: 15px;
-}
-
-.supplier-benefits i {
-    color: #a8ffb0;
-    margin-right: 8px;
-}
-
-/* RIGHT SIDE FORM */
-.supplier-right {
-    flex: 1;
-    min-width: 300px;
-}
-
-.supplier-form {
-    background: rgba(255, 255, 255, 0.12);
-    padding: 40px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.supplier-form input,
-.supplier-form textarea {
-    padding: 12px 15px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    font-size: 14px;
-}
-
-.supplier-form button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: #0c6b3f;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.supplier-form button:hover {
-    background: #0a5a34;
-    transform: translateY(-3px);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .supplier-content {
-        flex-direction: column;
-    }
-
-    .supplier-left h2 {
-        font-size: 32px;
-    }
-}
-
-
-
-
-
-
-
-
-
-.become-supplier-section {
-    padding: 100px 0;
-    /* background intentionally left to image defined earlier to avoid overrides */
-}
-
-.supplier-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-/* LEFT CONTENT */
-.supplier-content h2 {
-    font-size: 38px;
-    color: #34a86b; /* brighter green for heading */
-    margin-bottom: 20px;
-}
-
-.supplier-content p {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 30px;
-}
-
-.supplier-benefits {
-    list-style: none;
-    padding: 0;
-}
-
-.supplier-benefits li {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #1f2937;
-    position: relative;
-    padding-left: 28px;
-}
-
-/* Professional Check Icon */
-.supplier-benefits li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    color: #15803d;
-    font-weight: bold;
-}
-
-/* RIGHT FORM CARD */
-.supplier-form-wrapper {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-/* FORM */
-.supplier-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.supplier-form input,
-.supplier-form textarea {
-    padding: 14px 16px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    background: #ffffffcc;
-}
-
-/* Input Hover + Focus */
-.supplier-form input:focus,
-.supplier-form textarea:focus {
-    outline: none;
-    border-color: #15803d;
-    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
-}
-
-/* Submit Button */
-.btn-submit {
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #14532d, #15803d);
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Button Hover */
-.btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(21, 128, 61, 0.3);
-}
-
-/* ===============================
-   RESPONSIVE
-================================= */
-
-@media (max-width: 992px) {
-    .supplier-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .supplier-content {
-        text-align: center;
-    }
-
-    .supplier-benefits li {
-        padding-left: 0;
-    }
-
-    .supplier-benefits li::before {
-        position: static;
-        margin-right: 8px;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ================= GENERAL ================= */
-
-/* match earlier container rules; keep content flush with viewport edges */
-.container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px; /* slightly larger padding for general sections */
-}
-
-
-/* ================= RICE CARDS ================= */
-
-.rice-section{
-padding:120px 0 80px 0;
-background:#f9fafb;
-}
-
-.section-title{
-text-align:center;
-font-size:38px;
-color:#14532d;
-margin-bottom:15px;
-}
-
-.section-subtitle{
-text-align:center;
-max-width:700px;
-margin:auto;
-color:#555;
-margin-bottom:50px;
-line-height:1.7;
-}
-
-.rice-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-}
-
-.rice-card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:.3s;
-}
-
-.rice-card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 40px rgba(0,0,0,0.15);
-}
-
-.rice-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:8px;
-margin-bottom:15px;
-}
-
-.rice-card h3{
-color:#14532d;
-margin-bottom:10px;
-}
-
-.rice-card p{
-font-size:15px;
-color:#555;
-margin-bottom:15px;
-}
-
-.rice-card ul{
-padding-left:18px;
-}
-
-.rice-card li{
-font-size:14px;
-margin-bottom:6px;
-}
-
-/* ================= COMPARISON TABLE ================= */
-
-.rice-comparison{
-padding:80px 0;
-background:white;
-}
-
-.comparison-title{
-text-align:center;
-font-size:36px;
-color:#14532d;
-margin-bottom:40px;
-}
-
-.table-wrapper{
-overflow-x:auto;
-}
-
-.rice-table{
-width:100%;
-border-collapse:collapse;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.rice-table thead{
-background:#14532d;
-color:white;
-}
-
-.rice-table th,
-.rice-table td{
-padding:15px;
-text-align:center;
-border-bottom:1px solid #eee;
-}
-
-.rice-table tbody tr:hover{
-background:#f6fdf8;
-}
-
-.rice-table td:first-child{
-font-weight:600;
-color:#14532d;
-}
-
-/* ================= QUALITY TABLE ================= */
-
-.quality-section{
-padding:80px 0;
-background:#f9fafb;
-}
-
-.quality-title{
-text-align:center;
-font-size:36px;
-color:#14532d;
-margin-bottom:10px;
-}
-
-.quality-subtitle{
-text-align:center;
-color:#555;
-margin-bottom:40px;
-}
-
-.quality-table{
-width:100%;
-border-collapse:collapse;
-background:white;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.quality-table thead{
-background:#14532d;
-color:white;
-}
-
-.quality-table th,
-.quality-table td{
-padding:15px;
-text-align:center;
-border-bottom:1px solid #eee;
-}
-
-.quality-table tbody tr:hover{
-background:#f6fdf8;
+    /* add overlay styles here if needed */
 }
