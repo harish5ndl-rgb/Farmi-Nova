@@ -1621,14 +1621,14 @@ body {
 .supplier-content h2{
     font-size: 42px;
     font-weight: 700;
-    color: #14532d; /* dark green */
+    color: #000000; /* black for better readability */
     /* reduced shadow for clarity */
-    text-shadow: 0 2px 6px rgba(0,0,0,0.30);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.20);
 }
 .supplier-content p{
     font-size: 16px;
-    color: #f0f0f0;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.40);
+    color: #000000;
+    text-shadow: none;
     line-height: 1.7;
     margin-bottom: 25px;
 }
@@ -1641,8 +1641,8 @@ body {
 .supplier-benefits li{
     margin-bottom: 15px;
     font-size: 16px;
-    color: #ffffff;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.40);
+    color: #000000;
+    text-shadow: none;
     font-weight: 500;
 }
 
