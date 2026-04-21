@@ -1157,7 +1157,7 @@ color: inherit;
     position: relative;
     padding: 100px 0;
     /* use become supplier background image (spaces percent-encoded) */
-    background-image: url("../images/become\ supplier\ bg.jpg");
+    background-image: url("../images/become\ supplier\ bg.png");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1169,10 +1169,10 @@ color: inherit;
     content: "";
     position: absolute;
     inset: 0;
-    /* very light overlay so the photo remains visible behind content */
+    /* stronger overlay for better text contrast */
     background: linear-gradient(
-        rgba(8, 55, 35, 0.06),
-        rgba(8, 55, 35, 0.06)
+        rgba(6, 35, 24, 0.65),
+        rgba(8, 55, 35, 0.55)
     );
     z-index: 1;
 }
@@ -1186,17 +1186,31 @@ color: inherit;
     align-items: center;
 }
 
+.supplier-content h2 {
+    text-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+}
+
+.supplier-content p,
+.supplier-benefits li {
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+.supplier-benefits li::before {
+    color: #99f7a8;
+}
+
 /* LEFT CONTENT */
 .supplier-content h2 {
     font-size: 38px;
-    color: #14532d;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .supplier-content p {
     font-size: 18px;
     line-height: 1.8;
-    color: #0a0000;
+    color: #ffffff;
     margin-bottom: 30px;
 }
 
@@ -1680,14 +1694,14 @@ body {
 .supplier-content h2{
     font-size: 42px;
     font-weight: 700;
-    color: #000000; /* black for better readability */
+    color: #ffffff !important;
     /* reduced shadow for clarity */
-    text-shadow: 0 2px 6px rgba(0,0,0,0.20);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.32);
 }
 .supplier-content p{
     font-size: 16px;
-    color: #000000;
-    text-shadow: none;
+    color: #e4f3e5;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.14);
     line-height: 1.7;
     margin-bottom: 25px;
 }
@@ -1700,8 +1714,8 @@ body {
 .supplier-benefits li{
     margin-bottom: 15px;
     font-size: 16px;
-    color: #000000;
-    text-shadow: none;
+    color: #d8eed8;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.12);
     font-weight: 500;
 }
 
