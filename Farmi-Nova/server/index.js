@@ -47,9 +47,9 @@ app.post('/send-supplier-form', async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Royal Harvest" <${gmailUser}>`,
+    from: `"FarmiNova Global Trade" <${gmailUser}>`,
     to: receiverEmail,
-    subject: 'New Supplier Application - Royal Harvest',
+    subject: 'New Supplier Application - FarmiNova Global Trade',
     text: `Supplier Application Received:\n\nFull Name: ${full_name}\nFarm / Company Name: ${company_name}\nEmail Address: ${email}\nPhone Number: ${phone}\nProducts Supplied: ${products}\nAdditional Details: ${details}`
   };
 
@@ -64,3 +64,5 @@ app.post('/send-supplier-form', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+

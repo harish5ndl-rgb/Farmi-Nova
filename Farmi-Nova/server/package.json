@@ -1,7 +1,7 @@
 {
-  "name": "royal-harvest-server",
+  "name": "farmi-nova-server",
   "version": "1.0.0",
-  "description": "Royal Harvest supplier form backend",
+  "description": "FarmiNova supplier form backend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
