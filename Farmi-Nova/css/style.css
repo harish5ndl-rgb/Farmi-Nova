@@ -319,8 +319,13 @@ body, p, li {
     margin-top: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 18px;
     flex-wrap: wrap;
+}
+
+.hero-buttons a {
+    text-align: center;
 }
 
 /* ===== Primary Button ===== */
