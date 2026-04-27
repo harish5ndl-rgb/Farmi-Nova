@@ -1886,15 +1886,16 @@ body {
 /* ================= CONTACT CARDS ================= */
 .contact-cards {
     display: flex;
-    gap: 30px;
+    gap: 24px;
     margin-top: 40px;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .contact-card {
-    flex: 1;
-    min-width: 220px;
-    padding: 30px;
+    flex: 1 1 calc(33.333% - 16px);
+    min-width: 260px;
+    padding: 22px 24px;
     border-radius: 15px;
     text-align: left;
     backdrop-filter: blur(10px);
@@ -1906,7 +1907,13 @@ body {
 .contact-card-header {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 8px;
+    min-width: 0;
+}
+
+.contact-card-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .contact-card i {
@@ -1916,18 +1923,21 @@ body {
 }
 
 .contact-card-info h3 {
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     font-size: 18px;
 }
 
-.contact-card-info p {
+.contact-card-info p,
+.contact-card-info a {
     margin: 0;
     font-size: 14px;
     color: #e6ffe9;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 .contact-card-info a {
-    color: #e6ffe9;
+    color: inherit;
     text-decoration: none;
 }
 
