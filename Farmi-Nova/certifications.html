@@ -57,24 +57,39 @@
     <div class="container">
         <div class="section-header">
             <h2>What We Are Certified For</h2>
-            <p>Our certifications confirm the compliance, quality, and food safety of every export shipment.</p>
+            <p>Our certifications confirm the compliance, quality, and food safety of every export shipment, including APEDA certification, IEC registration, and RCMC export registration.</p>
         </div>
 
         <div class="cert-grid" id="cert-grid">
-            <button type="button" class="cert-card reveal cert-select" data-img="images/certifications/Udyam.jpg" data-title="Udyam Certificate" data-copy="Registered under MSME for small enterprise growth, export readiness, and enterprise recognition." data-reveal-delay="120">
+            <button id="cert-udyam" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Udyam.jpg" data-title="Udyam Certificate" data-copy="Registered under MSME for small enterprise growth, export readiness, and enterprise recognition." data-reveal-delay="120">
                 <img src="images/certifications/Udyam.jpg" alt="Udyam Certificate" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 <h3>Udyam Certificate</h3>
                 <p>Registered under MSME to support small enterprise growth and export readiness.</p>
             </button>
-            <button type="button" class="cert-card reveal cert-select" data-img="images/certifications/gst.png" data-title="GST Registration" data-copy="Registered under Goods and Services Tax for compliant domestic and export transactions." data-reveal-delay="160">
-                <img src="images/certifications/gst.png" alt="GST Registration" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
+            <button id="cert-gst" type="button" class="cert-card reveal cert-select" data-img="images/certifications/gst.png" data-title="GST Registration" data-copy="Registered under Goods and Services Tax for compliant domestic and export transactions." data-reveal-delay="160">
+                <img src="images/certifications/Under Progress.jpg" alt="GST Registration" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 <h3>GST Registration</h3>
                 <p>Ensures lawful taxation and export documentation for domestic and international shipments.</p>
             </button>
-            <button type="button" class="cert-card reveal cert-select" data-img="images/certifications/fssai.png" data-title="FSSAI Food Safety" data-copy="Validated for safe food handling, packaging, and shipment across domestic and international markets." data-reveal-delay="200">
-                <img src="images/certifications/fssai.png" alt="FSSAI Certification" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
+            <button id="cert-fssai" type="button" class="cert-card reveal cert-select" data-img="images/certifications/fssai.png" data-title="FSSAI Food Safety" data-copy="Validated for safe food handling, packaging, and shipment across domestic and international markets." data-reveal-delay="200">
+                <img src="images/certifications/Under Progress.jpg" alt="FSSAI Certification" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 <h3>FSSAI Food Safety</h3>
                 <p>Ensures our food safety management meets Indian regulatory standards.</p>
+            </button>
+            <button id="cert-apeda" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Under Progress.jpg" data-title="APEDA Certificate" data-copy="APEDA-certified exporter registration for agricultural products destined for global markets." data-reveal-delay="240">
+                <img src="images/certifications/Under Progress.jpg" alt="APEDA Certificate" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
+                <h3>APEDA Certificate</h3>
+                <p>Verified exporter status through APEDA registration for food and agriculture exports.</p>
+            </button>
+            <button id="cert-iec" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Under Progress.jpg" data-title="IEC Code Registration" data-copy="Import Export Code issued for export compliance, customs clearance, and international trading operations." data-reveal-delay="280">
+                <img src="images/certifications/Under Progress.jpg" alt="IEC Code Registration" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
+                <h3>IEC Code Registration</h3>
+                <p>Import Export Code registration enabling customs clearance and global export operations.</p>
+            </button>
+            <button id="cert-rcmc" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Under Progress.jpg" data-title="RCMC Certificate" data-copy="Registered with the relevant export council under RCMC for compliance with export incentive and quota programs." data-reveal-delay="320">
+                <img src="images/certifications/Under Progress.jpg" alt="RCMC Certificate" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
+                <h3>RCMC Certificate</h3>
+                <p>Registered exporter with council membership under RCMC for verified export compliance.</p>
             </button>
         </div>
 
@@ -204,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBackdrop = document.getElementById('cert-modal-backdrop');
     const modalClose = document.getElementById('cert-modal-close');
     const modalImage = document.getElementById('modal-image');
-    const certButtons = document.querySelectorAll('.cert-select');
+    const certButtons = Array.from(document.querySelectorAll('.cert-select'));
 
     const closeModal = () => {
         modal.classList.remove('visible');
@@ -221,6 +236,18 @@ document.addEventListener('DOMContentLoaded', () => {
     certButtons.forEach(button => {
         button.addEventListener('click', () => openModal(button));
     });
+
+    const openCertFromHash = () => {
+        const hash = window.location.hash.slice(1);
+        if (!hash) return;
+        const target = document.querySelector(`#cert-${hash}`);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.focus({ preventScroll: true });
+        }
+    };
+
+    openCertFromHash();
 
     modalBackdrop.addEventListener('click', closeModal);
     modalClose.addEventListener('click', closeModal);

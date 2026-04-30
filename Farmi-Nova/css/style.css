@@ -703,6 +703,30 @@ color: inherit;
     height: auto;
 }
 
+.cert-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cert-preview-item .cert-caption {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.cert-preview-item .cert-caption a {
+    color: #3c1a80;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cert-preview-item .cert-caption a:hover,
+.cert-preview-item .cert-caption a:focus {
+    text-decoration: underline;
+}
+
 .cert-card {
     display: flex;
     flex-direction: column;
