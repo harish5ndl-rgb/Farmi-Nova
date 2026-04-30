@@ -97,9 +97,6 @@
         <div class="cert-modal" id="cert-modal">
             <div class="cert-modal-backdrop" id="cert-modal-backdrop"></div>
             <div class="cert-modal-content" role="dialog" aria-modal="true" aria-label="Certificate viewer">
-                <button type="button" class="cert-modal-close" id="cert-modal-close" aria-label="Close preview">×</button>
-                <button type="button" class="cert-modal-arrow cert-modal-arrow--prev" id="cert-modal-prev" aria-label="Previous certificate">‹</button>
-                <button type="button" class="cert-modal-arrow cert-modal-arrow--next" id="cert-modal-next" aria-label="Next certificate">›</button>
                 <div class="cert-modal-frame">
                     <img id="modal-image" src="" alt="Certificate Preview" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 </div>
@@ -221,9 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.getElementById('cert-modal');
     const modalBackdrop = document.getElementById('cert-modal-backdrop');
-    const modalClose = document.getElementById('cert-modal-close');
-    const modalPrev = document.getElementById('cert-modal-prev');
-    const modalNext = document.getElementById('cert-modal-next');
     const modalImage = document.getElementById('modal-image');
     const modalTitle = document.getElementById('modal-title');
     const modalContent = document.querySelector('.cert-modal-content');
@@ -255,16 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => openModal(button, index));
     });
 
-    modalPrev.addEventListener('click', (event) => {
-        event.stopPropagation();
-        showIndex(currentIndex - 1);
-    });
-
-    modalNext.addEventListener('click', (event) => {
-        event.stopPropagation();
-        showIndex(currentIndex + 1);
-    });
-
     const openCertFromHash = () => {
         const hash = window.location.hash.slice(1);
         if (!hash) return;
@@ -281,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', (event) => {
         if (event.target === modal) closeModal();
     });
-    modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeModal();
         if (modal.classList.contains('visible')) {
