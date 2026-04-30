@@ -67,12 +67,12 @@
                 <h3>Udyam Certificate</h3>
                 <p>Registered under MSME to support small enterprise growth and export readiness.</p>
             </button>
-            <button id="cert-gst" type="button" class="cert-card reveal cert-select" data-img="images/certifications/gst.png" data-title="GST Registration" data-copy="Registered under Goods and Services Tax for compliant domestic and export transactions." data-reveal-delay="160">
+            <button id="cert-gst" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Under Progress.jpg" data-title="GST Registration" data-copy="Registered under Goods and Services Tax for compliant domestic and export transactions." data-reveal-delay="160">
                 <img src="images/certifications/Under Progress.jpg" alt="GST Registration" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 <h3>GST Registration</h3>
                 <p>Ensures lawful taxation and export documentation for domestic and international shipments.</p>
             </button>
-            <button id="cert-fssai" type="button" class="cert-card reveal cert-select" data-img="images/certifications/fssai.png" data-title="FSSAI Food Safety" data-copy="Validated for safe food handling, packaging, and shipment across domestic and international markets." data-reveal-delay="200">
+            <button id="cert-fssai" type="button" class="cert-card reveal cert-select" data-img="images/certifications/Under Progress.jpg" data-title="FSSAI Food Safety" data-copy="Validated for safe food handling, packaging, and shipment across domestic and international markets." data-reveal-delay="200">
                 <img src="images/certifications/Under Progress.jpg" alt="FSSAI Certification" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 <h3>FSSAI Food Safety</h3>
                 <p>Ensures our food safety management meets Indian regulatory standards.</p>
@@ -96,13 +96,14 @@
 
         <div class="cert-modal" id="cert-modal">
             <div class="cert-modal-backdrop" id="cert-modal-backdrop"></div>
-            <div class="cert-modal-content" role="dialog" aria-modal="true">
+            <div class="cert-modal-content" role="dialog" aria-modal="true" aria-label="Certificate viewer">
                 <button type="button" class="cert-modal-close" id="cert-modal-close" aria-label="Close preview">×</button>
                 <button type="button" class="cert-modal-arrow cert-modal-arrow--prev" id="cert-modal-prev" aria-label="Previous certificate">‹</button>
                 <button type="button" class="cert-modal-arrow cert-modal-arrow--next" id="cert-modal-next" aria-label="Next certificate">›</button>
-                <div class="cert-modal-image-wrap">
+                <div class="cert-modal-frame">
                     <img id="modal-image" src="" alt="Certificate Preview" onerror="this.src='images/certifications/missing-cert.svg'; this.alt='Certificate image unavailable';">
                 </div>
+                <div class="cert-modal-title" id="modal-title"></div>
             </div>
         </div>
 
@@ -224,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalPrev = document.getElementById('cert-modal-prev');
     const modalNext = document.getElementById('cert-modal-next');
     const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
     const modalContent = document.querySelector('.cert-modal-content');
     const certButtons = Array.from(document.querySelectorAll('.cert-select'));
     let currentIndex = 0;
@@ -237,7 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = button.dataset.title;
         modalImage.src = img;
         modalImage.alt = `${title} Preview`;
+        modalTitle.textContent = title || '';
         currentIndex = index;
+        modal.scrollTop = 0;
         modal.classList.add('visible');
     };
 
