@@ -50,84 +50,59 @@ app.post('/send-supplier-form', async (req, res) => {
   console.log('📬 Received supplier form submission:', { full_name, company_name, email, phone });
 
   const brevoApiKey = process.env.BREVO_API_KEY;
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailPass = process.env.GMAIL_PASS;
-  const receiverEmail = process.env.RECEIVER_EMAIL || gmailUser;
+  const receiverEmail = process.env.RECEIVER_EMAIL;
+
+  console.log('🔍 DEBUG - BREVO_API_KEY exists:', !!brevoApiKey);
+  console.log('🔍 DEBUG - RECEIVER_EMAIL:', receiverEmail);
+
+  if (!brevoApiKey) {
+    console.error('❌ BREVO_API_KEY not configured!');
+    return res.status(500).json({
+      message: 'Email service not configured. Please contact administrator.'
+    });
+  }
 
   if (!receiverEmail) {
-    console.error('❌ Receiver email not configured.');
+    console.error('❌ RECEIVER_EMAIL not configured.');
     return res.status(500).json({
-      message: 'Email configuration incomplete. Please contact the administrator.'
+      message: 'Receiver email not configured.'
     });
   }
 
   const emailBody = `Supplier Application Received:\n\nFull Name: ${full_name}\nFarm / Company Name: ${company_name}\nEmail Address: ${email}\nPhone Number: ${phone}\nProducts Supplied: ${products}\nAdditional Details: ${details}`;
 
-  // Try Brevo first (more reliable on Render)
-  if (brevoApiKey) {
-    console.log('📧 Attempting to send via Brevo...');
-    try {
-      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: {
-          'api-key': brevoApiKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          sender: { name: 'FarmiNova Global Trade', email: 'farminovaglobaltrade@gmail.com' },
-          to: [{ email: receiverEmail }],
-          subject: 'New Supplier Application - FarmiNova Global Trade',
-          textContent: emailBody
-        })
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Brevo error ${response.status}: ${errorText}`);
-      }
-
-      console.log('✅ Email sent successfully via Brevo');
-      return res.status(200).json({ message: 'Thank you for your application! Your details have been sent successfully.' });
-    } catch (error) {
-      console.error('❌ Brevo failed:', error.message);
-    }
-  }
-
-  // Fallback to Gmail
-  if (!gmailUser || !gmailPass) {
-    console.error('❌ Email configuration missing. Set BREVO_API_KEY or GMAIL_USER + GMAIL_PASS.');
-    return res.status(500).json({
-      message: 'Email service is not configured. Please try again later.'
-    });
-  }
-
-  console.log('📧 Attempting to send via Gmail SMTP...');
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: gmailUser,
-      pass: gmailPass
-    }
-  });
-
+  console.log('📧 Attempting to send via Brevo...');
   try {
-    await transporter.sendMail({
-      from: `"FarmiNova Global Trade" <${gmailUser}>`,
-      to: receiverEmail,
-      subject: 'New Supplier Application - FarmiNova Global Trade',
-      text: emailBody
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'api-key': brevoApiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender: { name: 'FarmiNova Global Trade', email: 'farminovaglobaltrade@gmail.com' },
+        to: [{ email: receiverEmail }],
+        subject: 'New Supplier Application - FarmiNova Global Trade',
+        textContent: emailBody
+      })
     });
-    console.log('✅ Email sent successfully via Gmail');
-    res.status(200).json({ message: 'Thank you for your application! Your details have been sent successfully.' });
+
+    console.log('Brevo response status:', response.status);
+    const responseData = await response.text();
+    console.log('Brevo response:', responseData);
+
+    if (!response.ok) {
+      throw new Error(`Brevo error ${response.status}: ${responseData}`);
+    }
+
+    console.log('✅ Email sent successfully via Brevo');
+    return res.status(200).json({ message: 'Thank you for your application! Your details have been sent successfully.' });
   } catch (error) {
-    console.error('❌ Gmail SMTP failed:', error.message);
-    res.status(502).json({
-      message: 'Unable to send your application email right now. Please try again later.',
+    console.error('❌ Brevo failed:', error.message);
+    return res.status(502).json({
+      message: 'Unable to send email. Please try again later.',
       error: error.message
     });
-  }
-});
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
