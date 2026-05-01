@@ -106,11 +106,10 @@ app.post('/send-supplier-form', async (req, res) => {
   }
 });
 
-// Serve static files (CSS, images, etc.)
 const path = require('path');
-app.use(express.static(path.join(__dirname, '../Farmi-Nova')));
 
 // Clean URL routing - serve HTML pages without .html extension
+// These routes must come BEFORE static file serving
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, '../Farmi-Nova/index.html'));
 });
@@ -139,6 +138,9 @@ app.get('/become-supplier', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../Farmi-Nova/index.html'));
 });
+
+// Serve static files (CSS, images, etc.) - this comes AFTER route handlers
+app.use(express.static(path.join(__dirname, '../Farmi-Nova')));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
