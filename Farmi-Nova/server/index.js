@@ -54,20 +54,12 @@ app.post('/send-supplier-form', async (req, res) => {
   }
 
   let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: gmailUser,
-      pass: gmailPass
-    },
-    tls: {
-      rejectUnauthorized: false
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000
-  });
+  service: 'gmail',
+  auth: {
+    user: gmailUser,
+    pass: gmailPass
+  }
+});
 
   const mailOptions = {
     from: `"FarmiNova Global Trade" <${gmailUser}>`,
