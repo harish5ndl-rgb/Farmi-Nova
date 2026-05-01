@@ -249,21 +249,38 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const nodeUrl = 'https://api-node-royal-harvest.onrender.com/send-supplier-form';
-form.action = nodeUrl;
             async function submitToNode() {
-                const response = await fetch(nodeUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                });
+    const controller = new AbortController();
 
-                const result = await response.json().catch(() => ({}));
-                if (!response.ok) {
-                    throw new Error(`Node backend error ${response.status}: ${result.message || response.statusText}`);
-                }
-                return result;
-            }
+    const timeout = setTimeout(() => {
+        controller.abort();
+    }, 15000);
 
+    try {
+        const response = await fetch(nodeUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
+            signal: controller.signal
+        });
+
+        clearTimeout(timeout);
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(result.message || `Server error ${response.status}`);
+        }
+
+        return result;
+
+    } catch (err) {
+        clearTimeout(timeout);
+        throw err;
+    }
+}
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
                 submitBtn.disabled = true;
