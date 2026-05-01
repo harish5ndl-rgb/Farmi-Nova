@@ -110,46 +110,50 @@ const path = require('path');
 
 // Clean URL routing - serve HTML pages without .html extension
 // These routes must come BEFORE static file serving
-const basePath = path.resolve(__dirname, '../Farmi-Nova');
+const projectRoot = process.cwd();
+const htmlDir = path.join(projectRoot, 'Farmi-Nova');
+
+console.log('Project root:', projectRoot);
+console.log('HTML directory:', htmlDir);
 
 app.get('/home', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'index.html'));
+  res.sendFile(path.join(htmlDir, 'index.html'));
 });
 
 app.get('/certificates', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'certifications.html'));
+  res.sendFile(path.join(htmlDir, 'certifications.html'));
 });
 
 app.get('/products', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'products.html'));
+  res.sendFile(path.join(htmlDir, 'products.html'));
 });
 
 app.get('/about', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'about.html'));
+  res.sendFile(path.join(htmlDir, 'about.html'));
 });
 
 app.get('/contact', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'contact-us.html'));
+  res.sendFile(path.join(htmlDir, 'contact-us.html'));
 });
 
 app.get('/become-supplier', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'become-supplier.html'));
+  res.sendFile(path.join(htmlDir, 'become-supplier.html'));
 });
 
 // Root path serves index.html
 app.get('/', (req, res) => {
   res.set('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(basePath, 'index.html'));
+  res.sendFile(path.join(htmlDir, 'index.html'));
 });
 
 // Serve static files (CSS, images, etc.) - this comes AFTER route handlers
-app.use(express.static(path.join(__dirname, '../Farmi-Nova')));
+app.use(express.static(path.join(htmlDir)));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
