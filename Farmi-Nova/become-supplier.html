@@ -277,12 +277,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(formData),
                 });
 
+                const result = await response.json().catch(() => ({}));
                 if (!response.ok) {
-                    const result = await response.json().catch(() => ({}));
                     throw new Error(`Node backend error ${response.status}: ${result.message || response.statusText}`);
                 }
 
-                return true;
+                return result;
             }
 
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -324,10 +324,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                await submitToNode();
+                const result = await submitToNode();
                 form.classList.add('hidden');
                 thankYou.classList.remove('hidden');
-                if (titleEl) titleEl.textContent = 'Thank you for choosing FarmiNova Global Trade!';
+                if (titleEl) {
+                    titleEl.textContent = result?.message || 'Thank you for choosing FarmiNova Global Trade!';
+                }
             } catch (nodeError) {
                 console.error('Node backend failed:', nodeError);
                 if (titleEl) titleEl.textContent = 'Submission failed. Please try again.';

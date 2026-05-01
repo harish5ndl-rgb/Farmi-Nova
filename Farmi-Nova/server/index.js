@@ -13,8 +13,22 @@ const app = express();
 const PORT = process.env.PORT || 5000; // You can change this if needed
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Handle invalid JSON bodies without failing the entire submission.
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    console.error('Invalid JSON payload received:', err.message);
+    return res.status(200).json({
+      message: 'Thank you! We received your request, but the form payload could not be parsed. Please retry.'
+    });
+  }
+
+  next(err);
+});
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Backend is running. Use POST /send-supplier-form with JSON body.' });
@@ -36,7 +50,9 @@ app.post('/send-supplier-form', async (req, res) => {
 
   if (!gmailUser || !gmailPass) {
     console.error('Email configuration missing. GMAIL_USER or GMAIL_PASS is not set.');
-    return res.status(200).json({ message: 'Thank you for your application! We received your request, but email delivery is not configured yet.' });
+    return res.status(200).json({
+      message: 'Thank you for your application! We received your request, but email delivery is not configured yet.'
+    });
   }
 
   let transporter = nodemailer.createTransport({
@@ -49,7 +65,10 @@ app.post('/send-supplier-form', async (req, res) => {
     },
     tls: {
       rejectUnauthorized: false
-    }
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
   });
 
   const mailOptions = {
