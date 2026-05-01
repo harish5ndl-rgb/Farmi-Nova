@@ -129,13 +129,13 @@ app.get('/home', (req, res) => {
   });
 });
 
-app.get('/certificates', (req, res) => {
+app.get('/certifications', (req, res) => {
   const filePath = path.join(htmlDir, 'certifications.html');
-  console.log('Attempting to serve /certificates from:', filePath);
+  console.log('Attempting to serve /certifications from:', filePath);
   console.log('File exists:', fs.existsSync(filePath));
   res.set('Content-Type', 'text/html; charset=utf-8');
   res.sendFile(filePath, (err) => {
-    if (err) console.error('Error serving /certificates:', err.message);
+    if (err) console.error('Error serving /certifications:', err.message);
   });
 });
 
@@ -153,13 +153,13 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact-us', (req, res) => {
   const filePath = path.join(htmlDir, 'contact-us.html');
-  console.log('Attempting to serve /contact from:', filePath);
+  console.log('Attempting to serve /contact-us from:', filePath);
   console.log('File exists:', fs.existsSync(filePath));
   res.set('Content-Type', 'text/html; charset=utf-8');
   res.sendFile(filePath, (err) => {
-    if (err) console.error('Error serving /contact:', err.message);
+    if (err) console.error('Error serving /contact-us:', err.message);
   });
 });
 
