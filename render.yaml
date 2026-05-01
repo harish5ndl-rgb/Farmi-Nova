@@ -9,5 +9,8 @@ services:
     root: .
     envVars:
       - key: GMAIL_USER
+        value: sandamharish2003@gmail.com
       - key: GMAIL_PASS
+        value: ltsjzaxzvhzxirru
       - key: RECEIVER_EMAIL
+        value: sandamharish2003@gmail.com
