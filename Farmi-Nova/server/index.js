@@ -74,7 +74,7 @@ app.post('/send-supplier-form', async (req, res) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          sender: { name: 'FarmiNova Global Trade', email: 'noreply@farminovaglobaltrade.com' },
+          sender: { name: 'FarmiNova Global Trade', email: 'farminovaglobaltrade@gmail.com' },
           to: [{ email: receiverEmail }],
           subject: 'New Supplier Application - FarmiNova Global Trade',
           textContent: emailBody
