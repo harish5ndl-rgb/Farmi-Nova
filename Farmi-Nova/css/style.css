@@ -2,11 +2,6 @@ html{
 scroll-behavior:smooth;
 }
 
-/* Performance: Lazy load images by default */
-img {
-    loading: lazy;
-}
-
 
 
 *{
