@@ -75,7 +75,7 @@
         <!-- RIGHT FORM -->
         <div class="supplier-form-wrapper reveal" data-reveal-delay="160">
 
-            <form id="supplierForm" class="supplier-form">
+            <form id="supplierForm" class="supplier-form" method="POST">
                 <input type="text" name="full_name" placeholder="Full Name" required>
                 <input type="text" name="company_name" placeholder="Farm / Company Name" required>
                 <input type="email" name="email" placeholder="Email Address" required>
@@ -86,6 +86,10 @@
                     Submit Application
                 </button>
             </form>
+
+            <div id="backendStatus" style="display:none;padding:1rem;margin-top:1rem;border:1px solid #e74c3c;color:#e74c3c;background:#fff0f0;border-radius:8px;">
+                Backend server is offline. Start the server at <strong>http://localhost:5000</strong> and reload the page.
+            </div>
 
             <!-- thank you message (hidden until submit) -->
             <div id="thankYouMessage" class="thank-you hidden">
@@ -248,12 +252,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 details: form.details.value
             };
 
-            // Use Render backend URL in production, localhost in development
-            let nodeUrl;
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                nodeUrl = 'http://localhost:5000/send-supplier-form';
-            } else {
-               nodeUrl = 'https://api-node-royal-harvest.onrender.com/send-supplier-form';
+            const localBackend = 'http://localhost:5000/send-supplier-form';
+            const productionBackend = 'https://api-node-royal-harvest.onrender.com/send-supplier-form';
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const isFileProtocol = window.location.protocol === 'file:';
+            const nodeUrl = isLocal || isFileProtocol ? localBackend : productionBackend;
+            form.action = nodeUrl;
+            const backendStatus = document.getElementById('backendStatus');
+
+            async function isBackendOnline(url) {
+                try {
+                    const healthUrl = url.replace('/send-supplier-form', '/');
+                    const testResponse = await fetch(healthUrl, { method: 'GET' });
+                    return testResponse.ok;
+                } catch (error) {
+                    return false;
+                }
             }
 
             async function submitToNode() {
@@ -274,28 +288,54 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
+                submitBtn.textContent = 'Checking backend...';
             }
 
-            // Show immediate positive user feedback first (no visible 10-15s lag)
-            form.classList.add('hidden');
-            thankYou.classList.remove('hidden');
             const titleEl = thankYou.querySelector('h3');
-            if (titleEl) titleEl.textContent = 'Submitting your application...';
+            if (titleEl) titleEl.textContent = 'Checking backend...';
 
-            try {
-                await submitToNode();
-                if (titleEl) titleEl.textContent = 'Thank you for choosing FarmiNova Global Trade!';
-                return;
-            } catch (nodeError) {
-                console.error('Node backend failed:', nodeError);
-                if (titleEl) titleEl.textContent = 'Thank you! We received your request.';
+            const backendOnline = await isBackendOnline(nodeUrl);
+            if (!backendOnline) {
+                if (backendStatus) {
+                    backendStatus.innerHTML = `Backend server is offline. Start the server at <strong>${nodeUrl.replace('/send-supplier-form', '')}</strong> and reload the page.`;
+                    backendStatus.style.display = 'block';
+                }
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Submit Application';
                 }
-                alert(`Submission did not reach the server instantly, but your request is queued. Please retry if needed.\n\nError: ${nodeError.message}`);
+                if (titleEl) {
+                    const offlineMessage = isLocal || isFileProtocol
+                        ? 'Local backend offline. Start localhost:5000 first.'
+                        : 'Remote backend offline. Check the deployed API service.';
+                    titleEl.textContent = offlineMessage;
+                }
                 return;
+            }
+
+            if (backendStatus) {
+                backendStatus.style.display = 'none';
+            }
+            if (submitBtn) {
+                submitBtn.textContent = 'Submitting...';
+            }
+            if (titleEl) {
+                titleEl.textContent = 'Submitting your application...';
+            }
+
+            try {
+                await submitToNode();
+                form.classList.add('hidden');
+                thankYou.classList.remove('hidden');
+                if (titleEl) titleEl.textContent = 'Thank you for choosing FarmiNova Global Trade!';
+            } catch (nodeError) {
+                console.error('Node backend failed:', nodeError);
+                if (titleEl) titleEl.textContent = 'Submission failed. Please try again.';
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+                alert(`Submission failed. Please check your backend and try again.\n\nError: ${nodeError.message}`);
             }
         });
     }
