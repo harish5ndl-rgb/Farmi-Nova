@@ -1,0 +1,13 @@
+services:
+  - type: web_service
+    name: api-node-royal-harvest
+    env: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    root: .
+    envVars:
+      - key: GMAIL_USER
+      - key: GMAIL_PASS
+      - key: RECEIVER_EMAIL
