@@ -41,16 +41,7 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Backend is running. Use POST /send-supplier-form with JSON body.' });
-});
-
-app.get('/send-supplier-form', (req, res) => {
-  res.status(200).json({
-    message: 'Endpoint /send-supplier-form expects POST. Please send a JSON body with full_name, company_name, email, phone, products, details.'
-  });
-});
-
+// POST /send-supplier-form endpoint for form submissions
 app.post('/send-supplier-form', async (req, res) => {
   const { full_name, company_name, email, phone, products, details } = req.body;
   
