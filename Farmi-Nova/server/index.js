@@ -13,6 +13,13 @@ const PORT = process.env.PORT || 5000; // You can change this if needed
 
 app.use(cors());
 app.options('*', cors());
+
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.path}`);
+  next();
+});
+
 app.use(express.json({
   limit: '10mb',
   verify: (req, res, buf) => {
@@ -183,10 +190,25 @@ app.get('/', (req, res) => {
 // Serve static files (CSS, images, etc.) - this comes AFTER route handlers
 app.use(express.static(path.join(htmlDir)));
 
-// 404 handler - for debugging
-app.use((req, res) => {
-  console.log('404: Route not found:', req.path);
-  res.status(404).send('Not Found');
+// Fallback handler - try to serve as HTML file with .html extension
+app.get('*', (req, res) => {
+  const requestPath = req.path;
+  console.log(`Fallback handler: attempting to serve ${requestPath}`);
+  
+  // Remove leading slash and add .html extension
+  const fileName = requestPath.substring(1) + '.html';
+  const filePath = path.join(htmlDir, fileName);
+  
+  console.log(`Trying fallback path: ${filePath}`);
+  
+  if (fs.existsSync(filePath)) {
+    console.log(`Found file via fallback: ${filePath}`);
+    res.set('Content-Type', 'text/html; charset=utf-8');
+    res.sendFile(filePath);
+  } else {
+    console.log(`File not found via fallback: ${filePath}`);
+    res.status(404).send('Not Found - ' + requestPath);
+  }
 });
 
 app.listen(PORT, () => {
