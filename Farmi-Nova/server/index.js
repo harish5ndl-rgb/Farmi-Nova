@@ -110,33 +110,42 @@ const path = require('path');
 
 // Clean URL routing - serve HTML pages without .html extension
 // These routes must come BEFORE static file serving
+const basePath = path.resolve(__dirname, '../Farmi-Nova');
+
 app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/index.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'index.html'));
 });
 
 app.get('/certificates', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/certifications.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'certifications.html'));
 });
 
 app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/products.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'products.html'));
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/about.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'about.html'));
 });
 
 app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/contact-us.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'contact-us.html'));
 });
 
 app.get('/become-supplier', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/become-supplier.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'become-supplier.html'));
 });
 
 // Root path serves index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Farmi-Nova/index.html'));
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(basePath, 'index.html'));
 });
 
 // Serve static files (CSS, images, etc.) - this comes AFTER route handlers
